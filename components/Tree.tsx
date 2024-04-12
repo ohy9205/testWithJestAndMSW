@@ -19,7 +19,7 @@ const Tree = ({ bgColor }: Props) => {
   ) => {
     e.stopPropagation(); // 버블링방지
     pick !== id && setPick(id); // 현재 pick과 다른 경우에만 pick을 변경
-    setOpenStatus(toggleOpenstatus(id, openStatus)); // 카테고리 오픈 토클
+    setOpenStatus(toggleOpen(id, openStatus)); // 카테고리 오픈 토클
   };
 
   // 카테고리 트리 렌더
@@ -67,7 +67,7 @@ const Tree = ({ bgColor }: Props) => {
 };
 
 // 카테고리 open/close
-const toggleOpenstatus = (id: string, status: any) => {
+const toggleOpen = (id: string, status: any) => {
   return { ...status, [id]: !status[id] };
 };
 
