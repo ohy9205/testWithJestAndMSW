@@ -32,7 +32,7 @@ const Tree = ({ bgColor }: Props) => {
               event.stopPropagation();
               getList(it.id);
             }}>
-            {openStatusCategory[it.id] ? "▼ " : "▶ "}
+            <span>{openStatusCategory[it.id] ? "▼ " : "▶ "}</span>
             {it.text}
           </div>
           <Button text="추가" onClick={() => onCreateButtonHandler(it.id)} />
