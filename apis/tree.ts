@@ -16,7 +16,6 @@ export const createCategory = async (
   pText: string,
   pOrder: string
 ) => {
-  console.log("카테고리 생성", pParentId, pDepth, pText, pOrder);
   const fetcher = new FetchAdapter();
   fetcher.setBody({ pParentId, pDepth, pText, pOrder });
   const data = await fetcher.fetching(`${BASE}/createCategItem.json`);

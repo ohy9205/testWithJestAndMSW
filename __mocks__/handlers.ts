@@ -35,8 +35,6 @@ export const handlers = [
       formData.get("pParentId") &&
       formData.get("pDepth")
     ) {
-      console.log("있음");
-
       // CATEGORY에 새 카테고리 추가
       CATEGORY.value.push({
         id: "12345",
@@ -52,8 +50,6 @@ export const handlers = [
         },
       });
     } else {
-      console.log("없음");
-      // pText값이 없으면 code: 'EXCEPTION' 반환?
       return HttpResponse.json({
         code: "EXCEPTION",
         value: null,
