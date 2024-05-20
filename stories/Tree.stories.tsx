@@ -1,5 +1,5 @@
-import Tree from "@/components/Tree";
 import { Meta, StoryObj } from "@storybook/react";
+import Tree from "../components/Tree";
 
 const meta: Meta<typeof Tree> = {
   title: "MathOn/Category",
@@ -11,7 +11,9 @@ export default meta;
 type Story = StoryObj<typeof Tree>; // Tree컴포 타입으로 지정
 
 export const Basic: Story = {
-  args: {},
+  args: {
+    bgColor: undefined,
+  },
 };
 
 export const Blue: Story = {

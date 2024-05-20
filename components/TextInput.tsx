@@ -17,6 +17,7 @@ const TextInput = ({ children }: Props) => {
         <input
           type="text"
           value={value}
+          placeholder="카테고리명"
           onChange={(e) => changeValue(e.target.value)}
         />
         {children(value)}
@@ -27,6 +28,7 @@ const TextInput = ({ children }: Props) => {
       <input
         type="text"
         value={value}
+        placeholder="카테고리명"
         onChange={(e) => changeValue(e.target.value)}
       />
     );
