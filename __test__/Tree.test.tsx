@@ -1,7 +1,18 @@
+import { server } from "@/__mocks__/server";
 import Tree from "@/components/Tree";
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import userEvent, { UserEvent } from "@testing-library/user-event";
+
+let user: UserEvent;
+
+// 테스트 시 msw를 사용하도록 한다
+beforeAll(() => {
+  server.listen();
+  user = userEvent.setup();
+});
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 describe("카테고리", () => {
   it("카테고리 컴포넌트가 렌더링된다", async () => {
@@ -13,36 +24,36 @@ describe("카테고리", () => {
     });
   });
 
-  it("특정 카테고리를 클릭하면 하위 카테고리 데이터를 불러온다", async () => {
+  it("카테고리를 클릭하면 하위 카테고리를 열고 닫을 수 있다", async () => {
     render(<Tree />);
-    const user = userEvent.setup();
+    const targetCategory = await screen.findByText("Category 3");
 
-    await user.click(await screen.findByText("Category 3"));
+    // 카테고리 열기
+    user.click(targetCategory);
     await waitFor(() => {
-      expect(screen.getByText("Category 3")).toBeInTheDocument();
       expect(screen.getByText("Category 3-1")).toBeInTheDocument();
       expect(screen.getByText("Category 3-2")).toBeInTheDocument();
       expect(screen.getByText("Category 3-3")).toBeInTheDocument();
     });
+
+    // 카테고리 닫기
+    user.click(targetCategory);
+    await waitFor(() => {
+      expect(screen.queryByText("Category 3-1")).toBeNull();
+      expect(screen.queryByText("Category 3-2")).toBeNull();
+      expect(screen.queryByText("Category 3-3")).toBeNull();
+    });
   });
 
   it("카테고리를 추가한다", async () => {
-    render(<Tree />);
-    const user = userEvent.setup();
+    await waitFor(() => render(<Tree />));
 
-    await waitFor(() => {
-      expect(screen.getByText("Category 1")).toBeInTheDocument();
-    });
-    await user.click(screen.getAllByText("추가")[0]);
-    const input = screen.getByRole("textbox");
-    await user.type(input, "new category");
-    await user.click(screen.getByText("생성"));
     await user.click(await screen.findByText("Category 1"));
+    await user.click(screen.getAllByText("추가")[0]);
+    await user.type(screen.getByRole("textbox"), "new category");
+    await user.click(screen.getByText("생성"));
 
     await waitFor(async () => {
-      screen.debug();
-      // expect(screen.getByText("Category 3-1")).toBeInTheDocument();
-      // expect(screen.getByText("Category 3-2")).toBeInTheDocument();
       expect(screen.getByText("new category")).toBeInTheDocument();
     });
   });
