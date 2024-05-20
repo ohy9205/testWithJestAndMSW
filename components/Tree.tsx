@@ -63,7 +63,6 @@ const Tree = ({ bgColor }: Props) => {
           ${bgColor === "skyblue" ? "bg-blue-200" : ""}
           ${bgColor === "orange" ? "bg-orange-300" : ""}
         `}>
-      <h1>카테고리</h1>
       {tree && <ul>{renderCategories("0")}</ul>}
     </div>
   );
