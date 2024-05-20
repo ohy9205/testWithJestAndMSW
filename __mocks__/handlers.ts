@@ -9,24 +9,9 @@ const CATEGORY = {
     { id: "1", text: "Category 1", parent: "0", data: { depth: 1 } },
     { id: "2", text: "Category 2", parent: "0", data: { depth: 1 } },
     { id: "3", text: "Category 3", parent: "0", data: { depth: 1 } },
-    {
-      id: "4",
-      text: "Category 3-1",
-      parent: "3",
-      data: { depth: 2 },
-    },
-    {
-      id: "5",
-      text: "Category 3-2",
-      parent: "3",
-      data: { depth: 2 },
-    },
-    {
-      id: "6",
-      text: "Category 3-3",
-      parent: "3",
-      data: { depth: 2 },
-    },
+    { id: "4", text: "Category 3-1", parent: "3", data: { depth: 2 } },
+    { id: "5", text: "Category 3-2", parent: "3", data: { depth: 2 } },
+    { id: "6", text: "Category 3-3", parent: "3", data: { depth: 2 } },
   ],
 };
 
