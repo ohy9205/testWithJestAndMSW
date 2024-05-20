@@ -11,7 +11,7 @@ type Props = {
 
 const Tree = ({ bgColor }: Props) => {
   const {
-    getList,
+    get,
     create,
     showNewFolderInput,
     data: { tree, openStatusCategory, pick, isShowNewFolderInput },
@@ -30,7 +30,7 @@ const Tree = ({ bgColor }: Props) => {
           <div
             onClick={(event: MouseEvent<HTMLElement>) => {
               event.stopPropagation();
-              getList(it.id);
+              get(it.id);
             }}>
             <span>{openStatusCategory[it.id] ? "▼ " : "▶ "}</span>
             {it.text}

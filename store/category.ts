@@ -5,10 +5,10 @@ type Category = {
   text: string;
   parent: string;
   data: { depth: number };
-}[];
+};
 
 type State = {
-  tree: Map<string, Category>;
+  tree: Map<string, Category[]>;
   pick: string;
   updateTree: (tree: State["tree"]) => void;
   updatePick: (pick: State["pick"]) => void;

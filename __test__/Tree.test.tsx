@@ -1,4 +1,3 @@
-import { server } from "@/__mocks__/server";
 import Tree from "@/components/Tree";
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@testing-library/react";
@@ -6,13 +5,9 @@ import userEvent, { UserEvent } from "@testing-library/user-event";
 
 let user: UserEvent;
 
-// 테스트 시 msw를 사용하도록 한다
 beforeAll(() => {
-  server.listen();
   user = userEvent.setup();
 });
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
 
 describe("카테고리", () => {
   it("카테고리 컴포넌트가 렌더링된다", async () => {
