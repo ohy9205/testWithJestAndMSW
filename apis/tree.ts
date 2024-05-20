@@ -6,10 +6,8 @@ const BASE =
 export const getCategory = async (pId: string) => {
   const fetcher = new FetchAdapter();
   fetcher.setBody({ pId: pId });
-
   const data = await fetcher.fetching(`${BASE}/categChildList.json`);
-
-  return data.value || [];
+  return data;
 };
 
 export const createCategory = async (
@@ -22,5 +20,5 @@ export const createCategory = async (
   const fetcher = new FetchAdapter();
   fetcher.setBody({ pParentId, pDepth, pText, pOrder });
   const data = await fetcher.fetching(`${BASE}/createCategItem.json`);
-  return data.value;
+  return data;
 };

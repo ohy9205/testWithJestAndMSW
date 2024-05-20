@@ -13,7 +13,7 @@ const Tree = ({ bgColor }: Props) => {
   const {
     getList,
     create,
-    onCreateButtonHandler,
+    showNewFolderInput,
     data: { tree, openStatusCategory, pick, isShowNewFolderInput },
   } = useTree();
 
@@ -35,7 +35,7 @@ const Tree = ({ bgColor }: Props) => {
             <span>{openStatusCategory[it.id] ? "▼ " : "▶ "}</span>
             {it.text}
           </div>
-          <Button text="추가" onClick={() => onCreateButtonHandler(it.id)} />
+          <Button text="추가" onClick={() => showNewFolderInput(it.id)} />
 
           {isShowNewFolderInput && pick === it.id && (
             <TextInput>
@@ -63,7 +63,7 @@ const Tree = ({ bgColor }: Props) => {
           ${bgColor === "skyblue" ? "bg-blue-200" : ""}
           ${bgColor === "orange" ? "bg-orange-300" : ""}
         `}>
-      {tree && <ul>{renderCategories("0")}</ul>}
+      {tree.size > 0 && <ul>{renderCategories("0")}</ul>}
     </div>
   );
 };
